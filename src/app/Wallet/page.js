@@ -341,7 +341,7 @@ const Page = () => {
                           </td>
                           <td class="p-2 border">
                             <div class="text-blue-500">
-                              🕒 02 Jul' 25 | 13:32 pm
+                              2 july
                             </div>
                             <div class="text-orange-600 font-semibold">
                               DR. SWATI
@@ -361,7 +361,7 @@ const Page = () => {
                               61851751443373D1989
                             </div>
                             <div class="text-blue-500">
-                              🕒 02 Jul' 25 | 13:32 pm
+                              2 july
                             </div>
                           </td>
                           <td class="p-0 border">
@@ -404,7 +404,7 @@ const Page = () => {
                               o7ritcVVw3jYcC26185
                             </div>
                             <div class="text-blue-500">
-                              🕒 02 Jul' 25 | 13:32 pm
+2 july
                             </div>
                           </td>
                           <td class="p-0 border">
