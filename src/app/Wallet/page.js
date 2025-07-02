@@ -219,7 +219,6 @@ const Page = () => {
                   </label>
                   <Input
                     id="amountFrom"
-                    type="number"
                     placeholder="Enter minimum amount"
                     className="w-full"
                   />
@@ -234,7 +233,6 @@ const Page = () => {
                   </label>
                   <Input
                     id="amountTo"
-                    type="number"
                     placeholder="Enter maximum amount"
                     className="w-full"
                   />
@@ -340,9 +338,7 @@ const Page = () => {
                             <input type="checkbox" />
                           </td>
                           <td class="p-2 border">
-                            <div class="text-blue-500">
-                              2 july
-                            </div>
+                            <div class="text-blue-500">2 july</div>
                             <div class="text-orange-600 font-semibold">
                               DR. SWATI
                             </div>
@@ -360,9 +356,7 @@ const Page = () => {
                             <div class="text-orange-600 font-medium">
                               61851751443373D1989
                             </div>
-                            <div class="text-blue-500">
-                              2 july
-                            </div>
+                            <div class="text-blue-500">2 july</div>
                           </td>
                           <td class="p-0 border">
                             <div class="flex justify-center space-x-4  border-b-1">
@@ -403,9 +397,7 @@ const Page = () => {
                             <div class="text-orange-600 font-medium">
                               o7ritcVVw3jYcC26185
                             </div>
-                            <div class="text-blue-500">
-2 july
-                            </div>
+                            <div class="text-blue-500">2 july</div>
                           </td>
                           <td class="p-0 border">
                             <div class="flex justify-center space-x-4 border-b-1">
