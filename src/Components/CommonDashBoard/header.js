@@ -32,13 +32,13 @@ export default function Header() {
         } flex-col md:flex md:flex-row md:items-center md:gap-8 text-md md:ml-10 mt-4 md:mt-0`}
       >
         <Link href="/" className="hover:text-[#0d41a1]">
-          Home
+          indexs
         </Link>
         <Link href="/features" className="hover:text-[#0d41a1]">
           Features
         </Link>
         <Link href="/pricing" className="hover:text-[#0d41a1]">
-          Pricing
+          Price
         </Link>
         <Link href="/about" className="hover:text-[#0d41a1]">
           About
