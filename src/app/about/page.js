@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import Footer from "@/Components/CommonDashBoard/footer";
+import Header from "@/Components/CommonDashBoard/header";
 
 export default function Page() {
   return (
     <>
+      <Header />
       <section
         className="header-1 section-rotate pt-[119px]"
         data-spotlight="fullscreen"
