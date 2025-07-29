@@ -76,7 +76,12 @@ const Page = () => {
               </div>
               <div>
                 <Checkbox checked={true}>
-                  <Image src="/razorpay.png" width={150} height={50} />
+                  <Image
+                    src="/razorpay.png"
+                    alt="img"
+                    width={150}
+                    height={50}
+                  />
                 </Checkbox>
               </div>
               <div>
@@ -282,48 +287,62 @@ const Page = () => {
                   <h3 className="text-[13px]">
                     Showing <bold className="font-bold">4 of 4 record(s)</bold>
                   </h3>
-                  <div class="w-full overflow-x-auto">
-                    <table class="table-fixed w-full min-w-[1400px] border border-gray-300 text-sm">
-                      <thead class="bg-gray-50">
-                        <tr class="text-center">
-                          <th class="w-[50px] border p-2">
+                  <div className="w-full overflow-x-auto">
+                    <table className=" w-full border border-gray-300 text-sm">
+                      <thead className="bg-gray-50">
+                        <tr className="text-center">
+                          <th className="w-[50px] border p-2">
                             <input type="checkbox" />
                           </th>
-                          <th class="w-[160px] border p-2">Order Details</th>
-                          <th class="w-[160px] border p-2">Tracking Details</th>
-                          <th class="w-[180px] border p-2">
+                          <th className="w-[160px] border p-2">
+                            Order Details
+                          </th>
+                          <th className="w-[160px] border p-2">
+                            Tracking Details
+                          </th>
+                          <th className="w-[180px] border p-2">
                             Transaction Details
                           </th>
-                          <th class="w-[220px] border p-2">
+                          <th className="w-[220px] border p-2">
                             <div>
                               Transaction
                               <br />
-                              <div class="flex justify-between px-4">
-                                <span class="text-xs text-gray-500">OPN.</span>
-                                <span class="text-xs text-gray-500">CLS.</span>
-                                <span class="text-xs text-gray-500">AMT.</span>
+                              <div className="flex justify-between px-4">
+                                <span className="text-xs text-gray-500">
+                                  OPN.
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                  CLS.
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                  AMT.
+                                </span>
                               </div>
                             </div>
                           </th>
-                          <th class="w-[160px] border p-2">
-                            <div>Amount Details</div>
+                          <th className="w-[160px] border p-2">
+                            Amount Details
                           </th>
-                          <th class="w-[100px] border p-2">Zone</th>
-                          <th class="w-[120px] border p-2">Billing Weight</th>
-                          <th class="w-[120px] border p-2">Forward</th>
-                          <th class="w-[240px] border p-2">
+                          <th className="w-[100px] border p-2">Zone</th>
+                          <th className="w-[120px] border p-2">
+                            Billing Weight
+                          </th>
+                          <th className="w-[120px] border p-2">Forward</th>
+                          <th className="w-[240px] border p-2">
                             <div>
                               Charges
                               <br />
-                              <div class="flex justify-between px-4">
-                                <span class="text-xs text-gray-500">
+                              <div className="flex justify-between px-4">
+                                <span className="text-xs text-gray-500">
                                   Forward
                                 </span>
-                                <span class="text-xs text-gray-500">RTO</span>
-                                <span class="text-xs text-gray-500">
+                                <span className="text-xs text-gray-500">
+                                  RTO
+                                </span>
+                                <span className="text-xs text-gray-500">
                                   Cancel
                                 </span>
-                                <span class="text-xs text-gray-500">
+                                <span className="text-xs text-gray-500">
                                   Weight
                                 </span>
                               </div>
@@ -332,34 +351,34 @@ const Page = () => {
                         </tr>
                       </thead>
 
-                      <tbody class="text-center">
-                        <tr class="border-t">
-                          <td class="p-2 border">
+                      <tbody className="text-center">
+                        <tr className="border-t">
+                          <td className="p-2 border">
                             <input type="checkbox" />
                           </td>
-                          <td class="p-2 border">
-                            <div class="text-blue-500">2 july</div>
-                            <div class="text-orange-600 font-semibold">
+                          <td className="p-2 border">
+                            <div className="text-blue-500">2 July</div>
+                            <div className="text-orange-600 font-semibold">
                               DR. SWATI
                             </div>
                           </td>
-                          <td class="p-2 border">
-                            <div class="text-orange-500">
-                              ✈️ <span class="font-semibold">DTDC</span>
+                          <td className="p-2 border">
+                            <div className="text-orange-500">
+                              ✈️ <span className="font-semibold">DTDC</span>
                             </div>
-                            <div class="text-blue-600 font-medium">
+                            <div className="text-blue-600 font-medium">
                               7X106519673
                             </div>
-                            <div class="text-green-600">Manifested</div>
+                            <div className="text-green-600">Manifested</div>
                           </td>
-                          <td class="p-2 border">
-                            <div class="text-orange-600 font-medium">
+                          <td className="p-2 border">
+                            <div className="text-orange-600 font-medium">
                               61851751443373D1989
                             </div>
-                            <div class="text-blue-500">2 july</div>
+                            <div className="text-blue-500">2 July</div>
                           </td>
-                          <td class="p-0 border">
-                            <div class="flex justify-center space-x-4  border-b-1">
+                          <td className="p-0 border">
+                            <div className="flex justify-center space-x-4 border-b">
                               <span>₹106.55</span>
                               <span>₹62.89</span>
                               <span>₹43.66</span>
@@ -368,17 +387,17 @@ const Page = () => {
                               Order Processing
                             </h3>
                           </td>
-                          <td class="p-2 border">
+                          <td className="p-2 border">
                             ₹70.00
-                            <div class="inline-block ml-2 text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">
+                            <div className="inline-block ml-2 text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">
                               PPD
                             </div>
                           </td>
-                          <td class="p-2 border">B</td>
-                          <td class="p-2 border">0.50Kg(s)</td>
-                          <td class="p-2 border">₹43.66</td>
-                          <td class="p-2 border">
-                            <div class="flex justify-center space-x-4 text-xs text-gray-700">
+                          <td className="p-2 border">B</td>
+                          <td className="p-2 border">0.50Kg(s)</td>
+                          <td className="p-2 border">₹43.66</td>
+                          <td className="p-2 border">
+                            <div className="flex justify-center space-x-4 text-xs text-gray-700">
                               <span>₹20.00</span>
                               <span>₹10.00</span>
                               <span>₹0.00</span>
@@ -387,20 +406,20 @@ const Page = () => {
                           </td>
                         </tr>
 
-                        <tr class="border-t">
-                          <td class="p-2 border">
+                        <tr className="border-t">
+                          <td className="p-2 border">
                             <input type="checkbox" />
                           </td>
-                          <td class="p-2 text-gray-400 border">-</td>
-                          <td class="p-2 text-gray-400 border">-</td>
-                          <td class="p-2 border">
-                            <div class="text-orange-600 font-medium">
+                          <td className="p-2 text-gray-400 border">-</td>
+                          <td className="p-2 text-gray-400 border">-</td>
+                          <td className="p-2 border">
+                            <div className="text-orange-600 font-medium">
                               o7ritcVVw3jYcC26185
                             </div>
-                            <div class="text-blue-500">2 july</div>
+                            <div className="text-blue-500">2 July</div>
                           </td>
-                          <td class="p-0 border">
-                            <div class="flex justify-center space-x-4 border-b-1">
+                          <td className="p-0 border">
+                            <div className="flex justify-center space-x-4 border-b">
                               <span>₹56.55</span>
                               <span>₹106.55</span>
                               <span>₹50.00</span>
@@ -409,12 +428,12 @@ const Page = () => {
                               Payment Added via QR
                             </h3>
                           </td>
-                          <td class="p-2 text-gray-400 border">-</td>
-                          <td class="p-2 text-gray-400 border">-</td>
-                          <td class="p-2 text-gray-400 border">-</td>
-                          <td class="p-2 text-gray-400 border">-</td>
-                          <td class="p-2 border">
-                            <div class="flex justify-center space-x-4 text-xs text-gray-700">
+                          <td className="p-2 text-gray-400 border">-</td>
+                          <td className="p-2 text-gray-400 border">-</td>
+                          <td className="p-2 text-gray-400 border">-</td>
+                          <td className="p-2 text-gray-400 border">-</td>
+                          <td className="p-2 border">
+                            <div className="flex justify-center space-x-4 text-xs text-gray-700">
                               <span>₹15.00</span>
                               <span>₹0.00</span>
                               <span>₹5.00</span>

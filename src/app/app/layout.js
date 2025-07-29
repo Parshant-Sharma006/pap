@@ -1,4 +1,3 @@
-// app/layout.jsx
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -19,11 +18,32 @@ import { MdOutlineLocalShipping } from "react-icons/md";
 import { BsClipboardCheck } from "react-icons/bs";
 import { AiFillSetting } from "react-icons/ai";
 
+import { Geist, Geist_Mono } from "next/font/google";
+import "./../globals.css";
+import ReduxProvider from "@/redux/provider";
+import { Toaster } from "react-hot-toast";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import { useEffect, useState } from "react";
+
+// === Font Setup ===
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+// === Sidebar Configuration ===
 const tapperElements = {
   Dashboard: { label: "Dashboard", icon: <FaTachometerAlt /> },
   AddOrders: { label: "Add Orders", icon: <FaPlus /> },
   Shipment: { label: "Shipment", icon: <MdOutlineLocalShipping /> },
-  wallet: { label: "Wallet", icon: <FaWallet /> },
+  Wallet: { label: "Wallet", icon: <FaWallet /> },
   NDR: { label: "NDR", icon: <BsClipboardCheck /> },
   Reports: { label: "Reports", icon: <FaChartBar /> },
   Billings: { label: "Billings", icon: <FaFileAlt /> },
@@ -33,20 +53,49 @@ const tapperElements = {
   Setting: { label: "Setting", icon: <AiFillSetting /> },
 };
 
+// === Main Root Layout ===
 export default function RootLayout({ children }) {
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const value = document.cookie;
+    setValue(value);
+  }, []);
+  const getCookie = (name) => {
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  };
+
+  const token = getCookie("token");
+
   return (
+    <>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
+      <ReduxProvider>
         <div className="flex h-screen">
-          <Sidebar />
+          {token && <Sidebar />}
           <main className="flex-1 flex flex-col">
-            <Navbar />
-            <section className="p-5 bg-gray-100 flex-1 overflow-auto">
+            {token && <Navbar />}
+            <section className="bg-gray-100 flex-1 overflow-auto">
               {children}
             </section>
           </main>
         </div>
+      </ReduxProvider>
+    </>
   );
 }
 
+// === Navbar ===
 function Navbar() {
   return (
     <nav className="bg-white shadow px-4 py-3 flex gap-4 items-center justify-end">
@@ -67,9 +116,10 @@ function Navbar() {
   );
 }
 
+// === Sidebar ===
 function Sidebar() {
   const pathname = usePathname();
-  const current = pathname.split("/")[1] || "dashboard";
+  const current = pathname.split("/")[1] || "Dashboard";
 
   return (
     <aside className="w-40 bg-gray-800 text-white p-4 scrollbar-hide overflow-y-auto">
@@ -82,7 +132,9 @@ function Sidebar() {
             <Link
               href={`/${key}`}
               className={`cursor-pointer p-2 rounded flex flex-col items-center gap-2 ${
-                current === key ? "bg-gray-600" : "hover:bg-gray-700"
+                current.toLowerCase() === key.toLowerCase()
+                  ? "bg-gray-600"
+                  : "hover:bg-gray-700"
               }`}
             >
               <div className="text-4xl">{item.icon}</div>

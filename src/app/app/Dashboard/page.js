@@ -362,7 +362,7 @@ const Page = () => {
       {/* Shipment Status */}
       <div className="w-full mt-6 ">
         <h2 className="text-2xl font-semibold mb-2">Shipment </h2>
-        <div className="flex justify-between items-start gap-3">
+        <div className="flex justify-between items-start gap-3 flex-wrap">
           <div className="flex gap-2 justify-center items-center bg-white p-4 rounded-xl shadow">
             <div className="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-xl">
               <FaChartPie className="text-2xl text-blue-400 mb-2" />

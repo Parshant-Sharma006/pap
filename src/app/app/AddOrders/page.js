@@ -10,6 +10,10 @@ import Forword from "@/Components/addParcel/forward";
 const { Option } = Select;
 const { Step } = Steps;
 import Warehouse from "@/Components/addParcel/Warehouse";
+import { Sidebar } from "@/Components/CommonDashBoard/Sidebar";
+import { Navbar } from "@/Components/CommonDashBoard/Sidebar";
+import { useEffect } from "react";
+
 
 export default function AddParcel() {
   const [activeTab, setActiveTab] = useState("forword");
@@ -23,6 +27,19 @@ export default function AddParcel() {
   ///
 
   const handleOptionChange = (option) => setSelected(option);
+
+   const [value, setValue] = useState("");
+  
+    useEffect(() => {
+      const value = document.cookie;
+      setValue(value);
+    }, []);
+    const getCookie = (name) => {
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    };
+  
+    const token = getCookie("token");
 
   return (
     <>

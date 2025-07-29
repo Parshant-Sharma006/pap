@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "gauravexpress.in",
       },
+      {
+        protocol: "https",
+        hostname: "parcelx-docs.s3.ap-south-1.amazonaws.com",
+      },
     ],
   },
 };
