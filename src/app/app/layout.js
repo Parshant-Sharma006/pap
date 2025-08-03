@@ -103,9 +103,9 @@ export default function RootLayout({ children }) {
       />
       <ReduxProvider>
         <div className="flex h-screen">
-          {token && <Sidebar />}
+          {<Sidebar />}
           <main className="flex-1 flex flex-col">
-            {token && <Navbar />}
+            {<Navbar />}
             <section className="bg-gray-100 flex-1 overflow-auto">
               {children}
             </section>
