@@ -55,7 +55,7 @@ export default function Login() {
           if (response.success) {
             console.log(response, "res");
             window.localStorage.setItem("token", response.data.token);
-            router.push("/");
+            router.push("/app/Dashboard");
             toast.success("Logined Successfully");
           } else {
             toast.error(`${response.message}`);
