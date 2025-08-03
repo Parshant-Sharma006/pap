@@ -41,20 +41,6 @@ import "swiper/css/pagination";
 import ReduxProvider from "@/redux/provider";
 import { Toaster } from "react-hot-toast";
 
-// Pages and Components
-import AddOrders from "@/app/AddOrders/Page";
-import Shipment from "@/app/Shipment/Page";
-import Dashboard from "@/app/Dashboard/Page";
-import Reports from "@/app/Reports/Page";
-import Utilities from "@/app/Utilities/Page";
-import Setting from "@/app/Setting/Page";
-import NDR from "@/app/NDR/Page";
-import Billings from "@/app/Billings/Page";
-import Communications from "@/app/Communications/Page";
-import Wallet from "@/app/Wallet/Page";
-import CustomerPannelSupport from "@/app/CustomerPannelSupport/Page";
-import Profile from "@/Components/CustomerProfile/Profile";
-
 // Others
 import { set } from "date-fns";
 
@@ -85,7 +71,6 @@ const tapperElements = {
   Profile: {
     label: "Profile",
     icon: <FaUser />,
-    component: <Profile />,
   },
 };
 
