@@ -57,7 +57,7 @@ const geistMono = Geist_Mono({
 
 // === Sidebar Configuration ===
 const tapperElements = {
-  "aap/Dashboard": { label: "Dashboard", icon: <FaTachometerAlt /> },
+  "app/Dashboard": { label: "Dashboard", icon: <FaTachometerAlt /> },
   "app/AddOrders": { label: "Add Orders", icon: <FaPlus /> },
   "app/Shipment": { label: "Shipment", icon: <MdOutlineLocalShipping /> },
   "app/Wallet": { label: "Wallet", icon: <FaWallet /> },
