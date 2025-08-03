@@ -68,6 +68,7 @@ const tapperElements = {
   "app/Communications": { label: "Communications", icon: <FaComments /> },
   "app/Tickets": { label: "Tickets", icon: <FaTicketAlt /> },
   "app/Setting": { label: "Setting", icon: <AiFillSetting /> },
+  "app/tracking": { label: "tracking", icon: <AiFillSetting /> },
   "app/Profile": {
     label: "Profile",
     icon: <FaUser />,
