@@ -57,18 +57,18 @@ const geistMono = Geist_Mono({
 
 // === Sidebar Configuration ===
 const tapperElements = {
-  Dashboard: { label: "Dashboard", icon: <FaTachometerAlt /> },
-  AddOrders: { label: "Add Orders", icon: <FaPlus /> },
-  Shipment: { label: "Shipment", icon: <MdOutlineLocalShipping /> },
-  Wallet: { label: "Wallet", icon: <FaWallet /> },
-  NDR: { label: "NDR", icon: <BsClipboardCheck /> },
-  Reports: { label: "Reports", icon: <FaChartBar /> },
-  Billings: { label: "Billings", icon: <FaFileAlt /> },
-  Utilities: { label: "Utilities", icon: <FaTools /> },
-  Communications: { label: "Communications", icon: <FaComments /> },
-  Tickets: { label: "Tickets", icon: <FaTicketAlt /> },
-  Setting: { label: "Setting", icon: <AiFillSetting /> },
-  Profile: {
+  "aap/Dashboard": { label: "Dashboard", icon: <FaTachometerAlt /> },
+  "app/AddOrders": { label: "Add Orders", icon: <FaPlus /> },
+  "app/Shipment": { label: "Shipment", icon: <MdOutlineLocalShipping /> },
+  "app/Wallet": { label: "Wallet", icon: <FaWallet /> },
+  "app/NDR": { label: "NDR", icon: <BsClipboardCheck /> },
+  "app/Reports": { label: "Reports", icon: <FaChartBar /> },
+  "app/Billings": { label: "Billings", icon: <FaFileAlt /> },
+  "app/Utilities": { label: "Utilities", icon: <FaTools /> },
+  "app/Communications": { label: "Communications", icon: <FaComments /> },
+  "app/Tickets": { label: "Tickets", icon: <FaTicketAlt /> },
+  "app/Setting": { label: "Setting", icon: <AiFillSetting /> },
+  "app/Profile": {
     label: "Profile",
     icon: <FaUser />,
   },
