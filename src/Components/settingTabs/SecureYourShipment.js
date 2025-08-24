@@ -48,7 +48,7 @@ export default function SecureYourShipment() {
       {/* Toggle Section */}
       <div className="flex justify-between items-center mb-8">
         <span className="text-sm font-medium text-gray-600">
-          Auto "Secure" all shipment
+          Auto &quot;Secure&quot; all shipment
         </span>
         <div className="flex items-center gap-3">
           <span className="text-green-600 underline font-semibold text-sm cursor-pointer">
