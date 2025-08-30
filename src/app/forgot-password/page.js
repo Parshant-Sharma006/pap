@@ -23,7 +23,12 @@ export default function ForgotPassword() {
     if (isValid()) {
       let payload = {email:""};
       payload.email = email[0].value;
-      const response = dispatch(forgotPasswordApi(payload));
+      const origin = window.location.origin;
+      const obj = {
+        email:payload,
+        origin:origin
+      }
+      const response = dispatch(forgotPasswordApi(obj));
       console.log(response);
       // if(response.success){
 
