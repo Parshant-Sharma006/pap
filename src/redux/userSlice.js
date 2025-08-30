@@ -166,4 +166,69 @@ export const kycBankDetails = (formData, token) => async (dispatch) => {
   );
 };
 
+export const createOrder = (amount, token) => async (dispatch) => {
+  const res = await fetch(
+    `https://pap-s-backend.onrender.com/api/wallet/add-money`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(amount),
+    }
+  );
+
+  const data = await res.json();
+  console.log("res", data);
+
+  const handlePaymentVerify = async (data) => {
+    console.log("sg");
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_UFTVz0PUEbBIY1",
+      amount: data.amount,
+      currency: data.currency,
+      name: "Gourav Express",
+      description: "Add money to wallet",
+      order_id: data.id,
+      handler: async (response) => {
+        console.log("response", response);
+        try {
+          const res = await fetch(
+            `https://pap-s-backend.onrender.com/api/wallet/verify-payment`,
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              }),
+            }
+          );
+
+          const verifyData = await res.json();
+          console.log("ver", verifyData);
+          if (verifyData.message) {
+            toast.success(verifyData.message);
+          }
+          return verifyData;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      theme: {
+        color: "#5f63b8",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
+  };
+  console.log("hi", data.data.paymentOrder);
+  const value = await handlePaymentVerify(data.data.paymentOrder);
+  console.log("val", value);
+};
+
 export default userSlice.reducer;

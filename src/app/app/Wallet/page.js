@@ -2,9 +2,36 @@
 import React, { useState } from "react";
 import { Button, Input, Checkbox } from "antd";
 import Image from "next/image";
+import { createOrder } from "@/redux/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const Page = () => {
   const [show, setShow] = useState(0);
+
+  const obj = {
+    amount: { name: "amount", value: "" },
+    promo: { name: "promo", value: "" },
+  };
+
+  const [amountObj, setAmountObj] = useState(obj);
+
+  const dispatch = useDispatch();
+
+  const { token } = useSelector((state) => {
+    return {
+      token: state.user.usersData?.token,
+    };
+  });
+
+  const addMoneyApiFun = (e) => {
+    const amountObject = {
+      "amount": amountObj.amount.value,
+      "promoCode": "CODE400",
+      "method": "razorpay",
+    };
+
+    dispatch(createOrder(amountObject, token));
+  };
 
   return (
     <div className="bg-[#f6f6f6]">
@@ -54,7 +81,21 @@ const Page = () => {
                 <h3>
                   Enter Your amount<span className="text-red-600">*</span>
                 </h3>
-                <Input className="w-full" name="amount" placeholder="50000" />
+                <Input
+                  className="w-full"
+                  name="amount"
+                  placeholder="50000"
+                  type="number"
+                  onChange={(e) => {
+                    const amounts = e.target.value;
+                    const obj = {
+                      ...amountObj,
+                      amount: { ...amountObj.amount, value: Number(amounts) },
+                    };
+                    console.log("ib", obj.amount)
+                    setAmountObj(obj);
+                  }}
+                />
               </div>
               <div className="w-1/2">
                 <h3>
@@ -86,7 +127,10 @@ const Page = () => {
               </div>
               <div>
                 <div className="flex gap-4">
-                  <button className="border border-orange-500 text-orange-500 px-4 py-2  rounded hover:bg-orange-50">
+                  <button
+                    className="border border-orange-500 text-orange-500 px-4 py-2  rounded hover:bg-orange-50"
+                    onClick={(e) => addMoneyApiFun()}
+                  >
                     Add Money
                   </button>
                   <button className="border border-{#fff} rounded px-4">

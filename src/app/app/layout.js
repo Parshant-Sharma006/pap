@@ -3,8 +3,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Script from "next/script";
 
-// React Icons (Grouped by source)
+// React Icons
 import {
   FaTachometerAlt,
   FaPlus,
@@ -13,49 +14,41 @@ import {
   FaFileAlt,
   FaChartBar,
   FaTools,
-  FaCogs,
   FaComments,
   FaTicketAlt,
-  FaUserCog,
-  FaMoneyCheckAlt,
   FaUser,
+  FaMoneyCheckAlt,
   FaHome,
-  FaIdCard,
   FaLock,
   FaFileContract,
   FaSignOutAlt,
 } from "react-icons/fa";
-
 import { MdOutlineLocalShipping, MdVerified } from "react-icons/md";
 import { BsClipboardCheck } from "react-icons/bs";
 import { AiFillSetting } from "react-icons/ai";
 
-// Fonts and Styles
+// Fonts & Styles
 import { Geist, Geist_Mono } from "next/font/google";
 import "./../globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/css";
 import "swiper/css/pagination";
 
-// Providers and UI
+// Providers
 import ReduxProvider from "@/redux/provider";
 import { Toaster } from "react-hot-toast";
-
-// Others
-import { set } from "date-fns";
 
 // === Font Setup ===
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-// === Sidebar Configuration ===
+// === Sidebar Config ===
 const tapperElements = {
   "app/Dashboard": { label: "Dashboard", icon: <FaTachometerAlt /> },
   "app/AddOrders": { label: "Add Orders", icon: <FaPlus /> },
@@ -69,20 +62,17 @@ const tapperElements = {
   "app/Tickets": { label: "Tickets", icon: <FaTicketAlt /> },
   "app/Setting": { label: "Setting", icon: <AiFillSetting /> },
   "app/tracking": { label: "tracking", icon: <AiFillSetting /> },
-  "app/Profile": {
-    label: "Profile",
-    icon: <FaUser />,
-  },
+  "app/Profile": { label: "Profile", icon: <FaUser /> },
 };
 
-// === Main Root Layout ===
+// === Root Layout ===
 export default function RootLayout({ children }) {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    const value = document.cookie;
-    setValue(value);
+    setValue(document.cookie);
   }, []);
+
   const getCookie = (name) => {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(";").shift();
@@ -91,29 +81,34 @@ export default function RootLayout({ children }) {
   const token = getCookie("token");
 
   return (
-    <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            background: "#333",
-            color: "#fff",
-          },
-        }}
-      />
-      <ReduxProvider>
-        <div className="flex h-screen">
-          {<Sidebar />}
-          <main className="flex-1 flex flex-col">
-            {<Navbar />}
-            <section className="bg-gray-100 flex-1 overflow-auto">
-              {children}
-            </section>
-          </main>
-        </div>
-      </ReduxProvider>
-    </>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <Script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="afterInteractive"
+        />
+      </head>
+      <body>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: { background: "#333", color: "#fff" },
+          }}
+        />
+        <ReduxProvider>
+          <div className="flex h-screen">
+            <Sidebar />
+            <main className="flex-1 flex flex-col">
+              <Navbar />
+              <section className="bg-gray-100 flex-1 overflow-auto">
+                {children}
+              </section>
+            </main>
+          </div>
+        </ReduxProvider>
+      </body>
+    </html>
   );
 }
 
@@ -121,10 +116,7 @@ export default function RootLayout({ children }) {
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
-  const handleAccountsClick = () => {
-    setIsOpen(!isOpen);
-  };
-  // Close dropdown if clicked outside
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -134,8 +126,9 @@ function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
   return (
-    <div className="relative ">
+    <div className="relative">
       <nav
         className="bg-white shadow px-4 py-3 flex gap-4 items-center justify-end"
         ref={dropdownRef}
@@ -147,21 +140,19 @@ function Navbar() {
           <FaWallet /> Wallet Cash
         </button>
         <button className="flex items-center gap-2 bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
-          <FaMoneyCheckAlt />
-          Pay Now
+          <FaMoneyCheckAlt /> Pay Now
         </button>
         <button
-          onClick={handleAccountsClick}
+          onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
           <FaUser /> Accounts
         </button>
       </nav>
-      {/* User Account Dropdown Menu */}
 
       {isOpen && (
         <div className="absolute right-4 mt-0 w-64 bg-white rounded-md shadow-xl z-50">
-          <div className=" bg-blue-900 text-white p-3 font-semibold text-[11px] leading-tight rounded-t-md">
+          <div className="bg-blue-900 text-white p-3 font-semibold text-[11px] leading-tight rounded-t-md">
             GAURAV EXPRESS LOGISTIC SERVICES
             <div className="text-[11px] text-green-600 font-semibold mt-1">
               GAURAV EXPRESS FARIDABAD
@@ -205,7 +196,7 @@ function Navbar() {
                 href="#"
                 className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100"
               >
-                <FaFileContract /> Term & Conditions
+                <FaFileContract /> Terms & Conditions
               </a>
             </li>
           </ul>
@@ -217,6 +208,7 @@ function Navbar() {
     </div>
   );
 }
+
 // === Sidebar ===
 function Sidebar() {
   const pathname = usePathname();
