@@ -52,15 +52,15 @@ export default function Login() {
       try {
         console.log(payload, "payload--->");
 
-        const toastId = toast.loading("Loading...");
+        const toastId = toast.loading("Loading..." , { duration:Infinity});
         dispatch(loginApi(payload)).then((response) => {
           if (response.success) {
             console.log(response, "res");
             window.localStorage.setItem("token", response.data.token);
             router.push("/app/Dashboard");
-            toast.success("Logged In Successfully" , {id:toastId});
+            toast.success("Logged In Successfully" , {id:toastId , duration: 4000});
           } else {
-            toast.error(`${response.message}` , {id:toastId});
+            toast.error(`${response.message}` , {id:toastId , duration: 4000});
           }
         });
       } catch (error) {

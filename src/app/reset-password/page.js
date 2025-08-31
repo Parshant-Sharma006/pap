@@ -24,14 +24,14 @@ export default function ResetPassword() {
         email: email,
         newPassword: resetPassword,
       };
-      const toastId = toast.loading("Saving...");
+      const toastId = toast.loading("Saving...", { duration: Infinity });
       const result = await resetPasswordApi(obj);
 
       if (result.success) {
-        toast.success("Password Updated!", { id: toastId });
+        toast.success("Password Updated!", { id: toastId, duration: 4000 });
         setTimeout(() => router.push("/login"), 1000);
       } else {
-        toast.error(`SomeThing Went Wrong`, { id: toastId });
+        toast.error(`SomeThing Went Wrong`, { id: toastId, duration: 4000 });
       }
     }
   }

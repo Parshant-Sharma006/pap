@@ -143,7 +143,7 @@ export default function ShipmentDashboard() {
                     onChange={() => toggleField(item)}
                     className="w-4 h-4 text-green-950"
                   />
-                  <label htmlFor={item}>{item}</label>
+                  <label >{item}</label>
                 </div>
               ))}
             </div>

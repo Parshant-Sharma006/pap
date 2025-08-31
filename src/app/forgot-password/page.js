@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { forgotPasswordApi } from "@/redux/userSlice";
 import toast from "react-hot-toast";
 
-
 export default function ForgotPassword() {
   const dispatch = useDispatch();
 
@@ -28,14 +27,15 @@ export default function ForgotPassword() {
         email: email[0].value,
         origin: origin,
       };
-      const toastId = toast.loading("Loading...");
+      const toastId = toast.loading("Loading...", {
+        duration: Infinity, 
+      });
       dispatch(forgotPasswordApi(obj)).then((res) => {
         console.log(res);
         if (res.success) {
-          toast.success("Reset Password Mail Sent", { id: toastId });
-
+          toast.success("Reset Password Mail Sent", { id: toastId , duration: 4000 });
         } else {
-          toast.error("SomeThing went wrong", { id: toastId });
+          toast.error("SomeThing went wrong", { id: toastId ,duration: 4000 });
         }
       });
     }

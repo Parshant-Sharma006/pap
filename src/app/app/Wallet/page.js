@@ -247,7 +247,7 @@ const Page = () => {
                 <div className="w-full">
                   <label
                     className="block text-sm font-medium mb-1"
-                    htmlFor="date"
+                    // htmlFor="date"
                   >
                     Date
                   </label>
@@ -262,7 +262,7 @@ const Page = () => {
                 <div className="w-full">
                   <label
                     className="block text-sm font-medium mb-1"
-                    htmlFor="amountFrom"
+                    // htmlFor="amountFrom"
                   >
                     Amount From
                   </label>
@@ -276,7 +276,7 @@ const Page = () => {
                 <div className="w-full">
                   <label
                     className="block text-sm font-medium mb-1"
-                    htmlFor="amountTo"
+                    // htmlFor="amountTo"
                   >
                     Amount To
                   </label>
@@ -290,7 +290,7 @@ const Page = () => {
                 <div className="w-full">
                   <label
                     className="block text-sm font-medium mb-1"
-                    htmlFor="selectId"
+                    // htmlFor="selectId"
                   >
                     Select Your ID
                   </label>

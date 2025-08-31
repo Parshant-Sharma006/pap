@@ -151,7 +151,7 @@ export default function RateCalculator() {
           <Form.Item className="mt-6">
             <Button
               type="primary"
-              htmlType="submit"
+              // htmlType="submit"
               disabled={!isFormValid}
               className="bg-green-950 border-none hover:bg-green-900"
             >
