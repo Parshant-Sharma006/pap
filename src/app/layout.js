@@ -80,15 +80,19 @@ export default function RootLayout({ children }) {
           },
         }}
       />
-      <ReduxProvider>
-        <div className="flex h-screen">
-          <main className="flex-1 flex flex-col">
-            <section className="bg-gray-100 flex-1 overflow-auto">
-              {children}
-            </section>
-          </main>
-        </div>
-      </ReduxProvider>
+        <html lang="en">
+          <body>
+            <ReduxProvider>
+              <div className="flex h-screen">
+                <main className="flex-1 flex flex-col">
+                  <section className="bg-gray-100 flex-1 overflow-auto">
+                    {children}
+                  </section>
+                </main>
+              </div>
+            </ReduxProvider>
+          </body>
+        </html>
     </>
   );
 }
