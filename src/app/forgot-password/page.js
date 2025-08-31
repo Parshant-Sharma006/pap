@@ -5,6 +5,8 @@ import { Input, Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { forgotPasswordApi } from "@/redux/userSlice";
+import toast from "react-hot-toast";
+
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();
@@ -21,18 +23,21 @@ export default function ForgotPassword() {
   };
   const onSubmit = () => {
     if (isValid()) {
-      let payload = {email:""};
-      payload.email = email[0].value;
       const origin = window.location.origin;
       const obj = {
-        email:payload,
-        origin:origin
-      }
-      const response = dispatch(forgotPasswordApi(obj));
-      console.log(response);
-      // if(response.success){
+        email: email[0].value,
+        origin: origin,
+      };
+      const toastId = toast.loading("Loading...");
+      dispatch(forgotPasswordApi(obj)).then((res) => {
+        console.log(res);
+        if (res.success) {
+          toast.success("Reset Password Mail Sent", { id: toastId });
 
-      // }
+        } else {
+          toast.error("SomeThing went wrong", { id: toastId });
+        }
+      });
     }
   };
 

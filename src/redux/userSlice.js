@@ -90,7 +90,9 @@ export const forgotPasswordApi = (formData) => async (dispatch) => {
       body: JSON.stringify(formData),
     });
 
-    return response;
+    const res = await response.json();
+    console.log("res" , res);
+    return res;
   } catch (error) {}
 };
 

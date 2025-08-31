@@ -51,21 +51,23 @@ export default function Login() {
 
       try {
         console.log(payload, "payload--->");
+
+        const toastId = toast.loading("Loading...");
         dispatch(loginApi(payload)).then((response) => {
           if (response.success) {
             console.log(response, "res");
             window.localStorage.setItem("token", response.data.token);
             router.push("/app/Dashboard");
-            toast.success("Logined Successfully");
+            toast.success("Logged In Successfully" , {id:toastId});
           } else {
-            toast.error(`${response.message}`);
+            toast.error(`${response.message}` , {id:toastId});
           }
         });
       } catch (error) {
         dispatch(userFailure(error));
       }
     } else {
-      toast.error("fill the form");
+      toast.error("Fill the form");
     }
   };
 
