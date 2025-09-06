@@ -91,7 +91,7 @@ export const forgotPasswordApi = (formData) => async (dispatch) => {
     });
 
     const res = await response.json();
-    console.log("res" , res);
+    console.log("res", res);
     return res;
   } catch (error) {}
 };
@@ -187,7 +187,7 @@ export const createOrder = (amount, token) => async (dispatch) => {
   const handlePaymentVerify = async (data) => {
     console.log("sg");
     const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_UFTVz0PUEbBIY1",
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_live_REEok771jeR6aL",
       amount: data.amount,
       currency: data.currency,
       name: "Gourav Express",
