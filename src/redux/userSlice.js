@@ -169,6 +169,7 @@ export const kycBankDetails = (formData, token) => async (dispatch) => {
 };
 
 export const createOrder = (amount, token) => async (dispatch) => {
+  debugger;
   const res = await fetch(
     `https://pap-s-backend.onrender.com/api/wallet/add-money`,
     {
@@ -181,18 +182,20 @@ export const createOrder = (amount, token) => async (dispatch) => {
     }
   );
 
+  debugger;
   const data = await res.json();
-  console.log("res", data);
-
+  console.log("res", data.data.paymentOrder);
+  debugger;
   const handlePaymentVerify = async (data) => {
+    debugger;
     console.log("sg");
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_live_REEok771jeR6aL",
-      amount: data.data.paymentOrder.amount,
-      currency: data.data.paymentOrder.currency,
+      amount: data.amount,
+      currency: data.currency,
       name: "Gourav Express",
       description: "Add money to wallet",
-      order_id: data.data.paymentOrder.id,
+      order_id: data.id,
       handler: async (response) => {
         console.log("response", response);
         try {
@@ -210,7 +213,7 @@ export const createOrder = (amount, token) => async (dispatch) => {
               }),
             }
           );
-
+          debugger;
           const verifyData = await res.json();
           console.log("ver", verifyData);
           if (verifyData.message) {
