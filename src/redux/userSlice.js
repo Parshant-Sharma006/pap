@@ -188,11 +188,11 @@ export const createOrder = (amount, token) => async (dispatch) => {
     console.log("sg");
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_live_REEok771jeR6aL",
-      amount: data.amount,
-      currency: data.currency,
+      amount: data.data.paymentOrder.amount,
+      currency: data.data.paymentOrder.currency,
       name: "Gourav Express",
       description: "Add money to wallet",
-      order_id: data.id,
+      order_id: data.data.paymentOrder.id,
       handler: async (response) => {
         console.log("response", response);
         try {
