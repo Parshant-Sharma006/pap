@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input, Checkbox } from "antd";
 import Image from "next/image";
 import { createOrder } from "@/redux/userSlice";
@@ -8,14 +8,11 @@ import { useSelector, useDispatch } from "react-redux";
 const Page = () => {
   const [show, setShow] = useState(0);
 
+  const [balance, setBalance] = useState(0);
   const obj = {
     amount: { name: "amount", value: "" },
     promo: { name: "promo", value: "" },
   };
-
-  const [amountObj, setAmountObj] = useState(obj);
-
-  const dispatch = useDispatch();
 
   const { token } = useSelector((state) => {
     return {
@@ -23,15 +20,44 @@ const Page = () => {
     };
   });
 
+  const [amountObj, setAmountObj] = useState(obj);
+
+  const dispatch = useDispatch();
+
   const addMoneyApiFun = (e) => {
     const amountObject = {
-      "amount": amountObj.amount.value,
-      "promoCode": "CODE400",
-      "method": "razorpay",
+      amount: amountObj.amount.value,
+      promoCode: "CODE400",
+      method: "razorpay",
     };
 
     dispatch(createOrder(amountObject, token));
   };
+
+  useEffect(() => {
+    const callBalanceApi = async () => {
+      try {
+        const res = await fetch(
+          `https://pap-s-backend.onrender.com/api/wallet/balance`,
+          {
+            method: "GET",
+            headers: {
+              "Content-type": "Application/JSON",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await res.json();
+        console.log("balance data", data);
+        if (data.balance) {
+          setBalance(data.balance);
+        }
+      } catch (err) {
+        toast.error("SomeThing Went Wrong");
+      }
+    };
+    callBalanceApi();
+  }, [token]);
 
   return (
     <div className="bg-[#f6f6f6]">
@@ -72,6 +98,18 @@ const Page = () => {
         >
           Wallet Deduction
         </button>
+        <button
+          className={
+            show === 3
+              ? "border-b-1 border-orange-600 text-orange-600 px-4"
+              : "border-b-0 px-4"
+          }
+          onClick={() => {
+            setShow(3);
+          }}
+        >
+          Current Balance
+        </button>
       </div>
       <div>
         {show == 0 && (
@@ -92,7 +130,7 @@ const Page = () => {
                       ...amountObj,
                       amount: { ...amountObj.amount, value: Number(amounts) },
                     };
-                    console.log("ib", obj.amount)
+                    console.log("ib", obj.amount);
                     setAmountObj(obj);
                   }}
                 />
@@ -488,6 +526,18 @@ const Page = () => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        {show === 3 && (
+          <>
+            <div className="mt-4 mx-4 bg-white p-4 shadow-md">
+              <div className="flex gap-6 justify-evenly">
+                <div className="w-full">
+                  <h3>Current Balance</h3>
+                  <Input value={balance} type="number" readOnly />
                 </div>
               </div>
             </div>

@@ -170,7 +170,6 @@ export const kycBankDetails = (formData, token) => async (dispatch) => {
 };
 
 export const createOrder = (amount, token) => async (dispatch) => {
-  debugger;
   const toastId = toast.loading("Loading...", {
     duration: Infinity,
   });
@@ -214,7 +213,6 @@ export const createOrder = (amount, token) => async (dispatch) => {
               }),
             }
           );
-          debugger;
           const verifyData = await res.json();
           console.log("ver", verifyData);
           if (verifyData.message) {
