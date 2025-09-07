@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 const initialState = {
   usersData: {},
@@ -170,6 +171,9 @@ export const kycBankDetails = (formData, token) => async (dispatch) => {
 
 export const createOrder = (amount, token) => async (dispatch) => {
   debugger;
+  const toastId = toast.loading("Loading...", {
+    duration: Infinity,
+  });
   const res = await fetch(
     `https://pap-s-backend.onrender.com/api/wallet/add-money`,
     {
@@ -182,12 +186,9 @@ export const createOrder = (amount, token) => async (dispatch) => {
     }
   );
 
-  debugger;
   const data = await res.json();
   console.log("res", data.data.paymentOrder);
-  debugger;
   const handlePaymentVerify = async (data) => {
-    debugger;
     console.log("sg");
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_live_REEok771jeR6aL",
@@ -217,7 +218,10 @@ export const createOrder = (amount, token) => async (dispatch) => {
           const verifyData = await res.json();
           console.log("ver", verifyData);
           if (verifyData.message) {
-            toast.success(verifyData.message);
+            toast.success("Money Added Successfully", {
+              id: toastId,
+              duration: 4000,
+            });
           }
           return verifyData;
         } catch (error) {
@@ -232,7 +236,7 @@ export const createOrder = (amount, token) => async (dispatch) => {
     rzp1.open();
   };
   console.log("hi", data.data.paymentOrder);
-  const value = await handlePaymentVerify(data.data.paymentOrder);
+  const value = await handlePaymentVerify(data);
   console.log("val", value);
 };
 
